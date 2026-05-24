@@ -1,8 +1,7 @@
 # OladeleO DevSecOps Pipeline — adapted for flask-webgoat
 # Source: github.com/OladeleO/pygoat, branch free-devsecops-pipeline
-# Adaptation: DAST service container replaced with direct pip install
-# and python run.py for flask-webgoat (port 5000).
-# All tool versions, flags, and configurations are identical to original.
+# Fix applied: actions/upload-artifact updated v3→v4 (v3 deprecated April 2024)
+# All tool versions, flags, and configurations are otherwise identical to original.
 
 name: OladeleO Pipeline Comparison (flask-webgoat)
 
@@ -37,7 +36,7 @@ jobs:
             || echo "Safety scan completed with issues"
 
       - name: Upload Safety Report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: safety-sca-report
           path: safety-report.json
@@ -62,7 +61,7 @@ jobs:
             || echo "Bandit scan completed with issues"
 
       - name: Upload Bandit Report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: bandit-sast-html-report
           path: bandit-report.html
@@ -111,4 +110,3 @@ jobs:
           cmd_options: '-a'
           artifact_name: zap_scan
           allow_issue_writing: false
-          #ss
